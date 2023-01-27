@@ -1,6 +1,6 @@
 .gallery__container {
   max-width: 282px;
-  min-height: 361px;
+  height: 361px;
   margin: 0;
   padding: 0;
   background-color: #fff;

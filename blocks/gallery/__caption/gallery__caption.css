@@ -1,4 +1,8 @@
 .gallery__caption {
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 24px;
   line-height: 1.21;
   font-weight: 900;
