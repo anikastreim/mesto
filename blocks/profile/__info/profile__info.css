@@ -1,3 +1,5 @@
 .profile__info {
-
+  max-width: 480px;
+  display: flex;
+  flex-wrap: wrap;
 }
