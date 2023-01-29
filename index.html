@@ -17,11 +17,11 @@
         <img src="./images/avatar.jpg" alt="Аватарка" class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__edit"></button>
+          <button type="button" class="profile__edit"></button>
           <p class="profile__description">Исследователь океана</p>    
         </div>
       </div>
-      <button class="profile__button"><img src="./images/button.svg" alt="Кнопка добавления" class="profile__button_add"></button>  
+      <button type="button" class="profile__add"></button>  
     </section>
     <section class="gallery">
       <ul class="gallery__list">
@@ -30,7 +30,7 @@
             <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="gallery__image">
             <div class="gallery__place">
               <figcaption class="gallery__caption">Карачаевск</figcaption>
-              <button class="gallery__button"><img src="./images/like.svg" alt="Лайк" class="profile__button-like"></button>
+              <button type="button" class="gallery__button"></button>
             </div> 
           </figure>
         </li>
@@ -39,7 +39,7 @@
             <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="gallery__image">
             <div class="gallery__place">
               <figcaption class="gallery__caption">Гора Эльбрус</figcaption>
-              <button class="gallery__button"><img src="./images/like.svg" alt="Лайк" class="profile__button-like"></button>
+              <button type="button" class="gallery__button"></button>
             </div> 
           </figure>
         </li>
@@ -48,7 +48,7 @@
             <img src="./images/dombay.jpg" alt="Домбай" class="gallery__image">
             <div class="gallery__place">
               <figcaption class="gallery__caption">Домбай</figcaption>
-              <button class="gallery__button"><img src="./images/like.svg" alt="Лайк" class="profile__button-like"></button>
+              <button type="button" class="gallery__button"></button>
             </div> 
           </figure>
         </li>
@@ -57,7 +57,7 @@
             <img src="./images/pillars.jpg" alt="Ленские столбы" class="gallery__image">
             <div class="gallery__place">
               <figcaption class="gallery__caption">Ленские столбы</figcaption>
-              <button class="gallery__button"><img src="./images/like.svg" alt="Лайк" class="profile__button-like"></button>
+              <button type="button" class="gallery__button"></button>
             </div> 
           </figure>
         </li>
@@ -66,7 +66,7 @@
             <img src="./images/wrangel-island.jpg" alt="Остров Врангеля" class="gallery__image">
             <div class="gallery__place">
               <figcaption class="gallery__caption">Остров Врангеля</figcaption>
-              <button class="gallery__button"><img src="./images/like.svg" alt="Лайк" class="profile__button-like"></button> 
+              <button type="button" class="gallery__button"></button> 
             </div>  
           </figure>
         </li>
@@ -75,7 +75,7 @@
             <img src="./images/kungur-cave.jpg" alt="Кунгурская пещера" class="gallery__image">
             <div class="gallery__place">
               <figcaption class="gallery__caption">Кунгурская пещера</figcaption>
-              <button class="gallery__button"><img src="./images/like.svg" alt="Лайк" class="profile__button-like"></button>
+              <button type="button" class="gallery__button"></button>
             </div>  
           </figure>
         </li>
@@ -85,5 +85,19 @@
   <footer class="footer">
     <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
   </footer>
+  <section class="popup">
+    <div class="popup__container">
+      <button type="button" class="popup__close"></button>
+      <form class="popup__form">
+        <h2 class="popup__header">Редактировать профиль</h2>
+        <fieldset class="popup__fieldset">
+          <input type="text" value="Жак-Ив Кусто" class="popup__input popup__input_name">
+          <input type="text" value="Исследователь океана" class="popup__input popup__input_description">
+        </fieldset>
+        <button type="submit" class="popup__save">Сохранить</button>
+      </form>
+    </div>
+  </section>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
