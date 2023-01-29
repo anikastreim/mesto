@@ -6,3 +6,17 @@
   margin: 36.25px auto 51px;
   padding: 0;
 }
+
+@media screen and (max-width: 1023px) {
+  .profile {
+    max-width: 768px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    max-width: 282px;
+    flex-direction: column;
+    margin: 41px auto 36px;
+  }
+}

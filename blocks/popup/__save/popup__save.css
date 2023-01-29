@@ -3,10 +3,24 @@
   height: 50px;
   color: #fff;
   background-color: #000;
+  border: none;
   font-size: 18px;
   line-height: 1.21;
   font-weight: 400;
   text-align: center;
   margin: 0;
   padding: 0;
+}
+
+.popup__save:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .popup__save {
+    width: 238px;
+    height: 46px;
+    font-size: 14px;
+  }
 }

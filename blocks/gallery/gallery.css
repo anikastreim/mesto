@@ -3,3 +3,16 @@
   margin: 0 auto 67px;
   padding: 0;
 }
+
+@media screen and (max-width: 1023px) {
+  .gallery {
+    max-width: 581px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .gallery {
+    max-width: 282px;
+    margin-bottom: 48px;
+  }
+}

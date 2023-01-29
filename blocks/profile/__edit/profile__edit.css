@@ -9,3 +9,20 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.profile__edit:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__edit {
+    margin-bottom: 0;
+    position: absolute;
+    top: 8px;
+    right: -28px;
+    width: 18px;
+    height: 18px;
+    background-size: 7.5px, cover;
+  }
+}

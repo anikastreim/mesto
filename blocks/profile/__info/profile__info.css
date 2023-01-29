@@ -6,3 +6,12 @@
   column-gap: 18px;
   row-gap: 8px;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__info {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+  }
+}
