@@ -1,6 +1,5 @@
 .profile__edit {
-  max-width: 24px;
-  width: 100%;
+  width: 24px;
   height: 24px;
   border: 1px solid #fff;
   margin-bottom: 9px;
@@ -18,7 +17,7 @@
 
 @media screen and (max-width: 767px) {
   .profile__edit {
-    max-width: 18px;
+    width: 18px;
     height: 18px;
     background-size: 7.5px, cover;
   }

@@ -1,6 +1,5 @@
 .gallery__like {
-  max-width: 22px;
-  width: 100%;
+  width: 22px;
   height: 19px;
   border: none;
   background-image: url(../../../images/like.svg);
