@@ -10,8 +10,9 @@
 @media screen and (max-width: 767px) {
   .profile__info {
     display: flex;
-    flex-direction: column;
-    position: relative;
-    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 6px;
   }
 }
