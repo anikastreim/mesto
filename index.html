@@ -23,81 +23,79 @@
       </div>
       <button type="button" class="profile__add"></button>  
     </section>
-    <section class="gallery">
-      <ul class="gallery__list">
-        <li>
-          <figure class="gallery__container">
-            <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="gallery__image">
-            <figcaption class="gallery__place">
-              <h2 class="gallery__caption">Карачаевск</h2>
-              <button type="button" class="gallery__like"></button>
-            </figcaption> 
-          </figure>
-        </li>
-        <li>
-          <figure class="gallery__container">
-            <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="gallery__image">
-            <figcaption class="gallery__place">
-              <h2 class="gallery__caption">Гора Эльбрус</h2>
-              <button type="button" class="gallery__like"></button>
-            </figcaption> 
-          </figure>
-        </li>
-        <li>
-          <figure class="gallery__container">
-            <img src="./images/dombay.jpg" alt="Домбай" class="gallery__image">
-            <figcaption class="gallery__place">
-              <h2 class="gallery__caption">Домбай</h2>
-              <button type="button" class="gallery__like"></button>
-            </figcaption> 
-          </figure>
-        </li>
-        <li>
-          <figure class="gallery__container">
-            <img src="./images/pillars.jpg" alt="Ленские столбы" class="gallery__image">
-            <figcaption class="gallery__place">
-              <h2 class="gallery__caption">Ленские столбы</h2>
-              <button type="button" class="gallery__like"></button>
-            </figcaption> 
-          </figure>
-        </li>
-        <li>
-          <figure class="gallery__container">
-            <img src="./images/wrangel-island.jpg" alt="Остров Врангеля" class="gallery__image">
-            <figcaption class="gallery__place">
-              <h2 class="gallery__caption">Остров Врангеля</h2>
-              <button type="button" class="gallery__like"></button> 
-            </figcaption>  
-          </figure>
-        </li>
-        <li>  
-          <figure class="gallery__container">
-            <img src="./images/kungur-cave.jpg" alt="Кунгурская пещера" class="gallery__image">
-            <figcaption class="gallery__place">
-              <h2 class="gallery__caption">Кунгурская пещера</h2>
-              <button type="button" class="gallery__like"></button>
-            </figcaption>  
-          </figure>
-        </li>
-      </ul>
+    <section class="galleries">
+      <article class="gallery">
+        <div class="gallery__container">
+          <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="gallery__image">
+          <div class="gallery__place">
+            <h2 class="gallery__caption">Карачаевск</h2>
+            <button type="button" class="gallery__like"></button>
+          </div> 
+        </div>
+      </article>
+      <article class="gallery">
+        <div class="gallery__container">
+          <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="gallery__image">
+          <div class="gallery__place">
+            <h2 class="gallery__caption">Гора Эльбрус</h2>
+            <button type="button" class="gallery__like"></button>
+          </div> 
+        </div>
+      </article>
+      <article class="gallery">
+        <div class="gallery__container">
+          <img src="./images/dombay.jpg" alt="Домбай" class="gallery__image">
+          <div class="gallery__place">
+            <h2 class="gallery__caption">Домбай</h2>
+            <button type="button" class="gallery__like"></button>
+          </div> 
+        </div>
+      </article>
+      <article class="gallery">
+        <div class="gallery__container">
+          <img src="./images/pillars.jpg" alt="Ленские столбы" class="gallery__image">
+          <div class="gallery__place">
+            <h2 class="gallery__caption">Ленские столбы</h2>
+            <button type="button" class="gallery__like"></button>
+          </div> 
+        </div>
+      </article>
+      <article class="gallery">
+        <div class="gallery__container">
+          <img src="./images/wrangel-island.jpg" alt="Остров Врангеля" class="gallery__image">
+          <div class="gallery__place">
+            <h2 class="gallery__caption">Остров Врангеля</h2>
+            <button type="button" class="gallery__like"></button> 
+          </div>  
+        </div>
+      </article>
+      <article class="gallery">
+        <div class="gallery__container">
+          <img src="./images/kungur-cave.jpg" alt="Кунгурская пещера" class="gallery__image">
+          <div class="gallery__place">
+            <h2 class="gallery__caption">Кунгурская пещера</h2>
+            <button type="button" class="gallery__like"></button>
+          </div>  
+        </div>
+      </article>
     </section>
   </main>
   <footer class="footer">
     <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
   </footer>
-  <section class="popup">
+  <div class="popup">
     <div class="popup__container">
       <button type="button" class="popup__close"></button>
-      <form class="popup__form">
+      <form class="popup__form" name="popup" method="post">
         <h2 class="popup__header">Редактировать профиль</h2>
         <fieldset class="popup__fieldset">
-          <input type="text" value="Жак-Ив Кусто" class="popup__input popup__input_name">
-          <input type="text" value="Исследователь океана" class="popup__input popup__input_description">
+          <input type="text" name="name" placeholder="Имя" class="popup__input popup__input_type_name">
+          <input type="text" name="description" placeholder="О себе" class="popup__input popup__input_type_description">
         </fieldset>
         <button type="submit" class="popup__save">Сохранить</button>
       </form>
     </div>
-  </section>
+  </div>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
