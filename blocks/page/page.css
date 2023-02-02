@@ -15,7 +15,7 @@
   text-rendering: optimizeLegibility;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 768px) and (max-width: 1023px) {
   .page {
     margin: 0 50px;
   }
