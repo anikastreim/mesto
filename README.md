@@ -20,4 +20,4 @@
 
 **Посмотреть проект**
 
-* [Ссылка на проект](https://anikastreim.github.io/mesto-russia/)
+* [Ссылка на проект](https://anikastreim.github.io/mesto/)
