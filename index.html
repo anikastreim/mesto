@@ -24,60 +24,6 @@
       <button type="button" class="profile__add"></button>  
     </section>
     <section class="galleries">
-      <article class="gallery">
-        <div class="gallery__container">
-          <img src="./images/karachaevsk.jpg" alt="Карачаевск" class="gallery__image">
-          <div class="gallery__place">
-            <h2 class="gallery__caption">Карачаевск</h2>
-            <button type="button" class="gallery__like"></button>
-          </div> 
-        </div>
-      </article>
-      <article class="gallery">
-        <div class="gallery__container">
-          <img src="./images/elbrus.jpg" alt="Гора Эльбрус" class="gallery__image">
-          <div class="gallery__place">
-            <h2 class="gallery__caption">Гора Эльбрус</h2>
-            <button type="button" class="gallery__like"></button>
-          </div> 
-        </div>
-      </article>
-      <article class="gallery">
-        <div class="gallery__container">
-          <img src="./images/dombay.jpg" alt="Домбай" class="gallery__image">
-          <div class="gallery__place">
-            <h2 class="gallery__caption">Домбай</h2>
-            <button type="button" class="gallery__like"></button>
-          </div> 
-        </div>
-      </article>
-      <article class="gallery">
-        <div class="gallery__container">
-          <img src="./images/pillars.jpg" alt="Ленские столбы" class="gallery__image">
-          <div class="gallery__place">
-            <h2 class="gallery__caption">Ленские столбы</h2>
-            <button type="button" class="gallery__like"></button>
-          </div> 
-        </div>
-      </article>
-      <article class="gallery">
-        <div class="gallery__container">
-          <img src="./images/wrangel-island.jpg" alt="Остров Врангеля" class="gallery__image">
-          <div class="gallery__place">
-            <h2 class="gallery__caption">Остров Врангеля</h2>
-            <button type="button" class="gallery__like"></button> 
-          </div>  
-        </div>
-      </article>
-      <article class="gallery">
-        <div class="gallery__container">
-          <img src="./images/kungur-cave.jpg" alt="Кунгурская пещера" class="gallery__image">
-          <div class="gallery__place">
-            <h2 class="gallery__caption">Кунгурская пещера</h2>
-            <button type="button" class="gallery__like"></button>
-          </div>  
-        </div>
-      </article>
     </section>
   </main>
   <footer class="footer">
@@ -96,6 +42,15 @@
       </form>
     </div>
   </div>
+  <template id="gallery">
+    <article class="gallery">
+      <img src="#" alt="#" class="gallery__image">
+      <div class="gallery__place">
+        <h2 class="gallery__caption"></h2>
+        <button type="button" class="gallery__like"></button>
+      </div> 
+    </article>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

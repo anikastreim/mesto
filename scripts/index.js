@@ -1,3 +1,66 @@
+const initialCards = [
+  {
+    name: 'Карачаевск',
+    link: './images/karachaevsk.jpg'
+  },
+  {
+    name: 'Гора Эльбрус',
+    link: './images/elbrus.jpg'
+  },
+  {
+    name: 'Домбай',
+    link: './images/dombay.jpg'
+  },
+  {
+    name: 'Ленские столбы',
+    link: './images/pillars.jpg'
+  },
+  {
+    name: 'Остров Врангеля',
+    link: './images/wrangel-island.jpg'
+  },
+  {
+    name: 'Кунгурская пещера',
+    link: '../images/kungur-cave.jpg'
+  }
+];
+
+const galleryWrapper = document.querySelector('.galleries');
+const template = document.getElementById('gallery');
+
+
+/* const handleDelete = (evt) => {
+  evt.target.closest('.gallery__container').remove();
+}; */
+
+const loadImages = (element) => {
+    const galleryElements = template.content.cloneNode(true);
+    const galleryName = galleryElements.querySelector('.gallery__caption');
+    const galleryImage = galleryElements.querySelector('.gallery__image');
+    galleryName.textContent = element.name;
+    galleryImage.src = element.link;
+    galleryImage.alt = element.name;
+    /* const deleteButton = galleryElements.querySelector('.button__delete');
+    deleteButton.addEventListener('click', handleDelete) */
+    return galleryElements;
+}
+
+initialCards.forEach((element) => {
+    galleryWrapper.append(loadImages(element))
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 let editButton = document.querySelector(".profile__edit");
 let popup = document.querySelector(".popup");
 let closeButton = popup.querySelector(".popup__close");
