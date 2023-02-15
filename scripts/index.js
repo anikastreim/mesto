@@ -33,6 +33,10 @@ const template = document.getElementById('gallery');
   evt.target.closest('.gallery__container').remove();
 }; */
 
+const handleLike = (evt) => {
+  evt.target.classList.toggle('gallery__like_active');
+};
+
 const loadImages = (element) => {
     const galleryElements = template.content.cloneNode(true);
     const galleryName = galleryElements.querySelector('.gallery__caption');
@@ -42,6 +46,8 @@ const loadImages = (element) => {
     galleryImage.alt = element.name;
     /* const deleteButton = galleryElements.querySelector('.button__delete');
     deleteButton.addEventListener('click', handleDelete) */
+    const likeButton = galleryElements.querySelector('.gallery__like');
+    likeButton.addEventListener('click', handleLike);
     return galleryElements;
 }
 
@@ -91,3 +97,10 @@ function handleFormSubmit (evt) {
 }
 
 formElement.addEventListener('submit', handleFormSubmit);
+
+
+
+
+likeButton.querySelector('.gallery__like').addEventListener('click', function (evt) {
+  evt.target.classList.toggle('gallery__like_active')
+}); 
