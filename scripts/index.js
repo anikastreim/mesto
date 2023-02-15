@@ -29,9 +29,9 @@ const galleryWrapper = document.querySelector('.galleries');
 const template = document.getElementById('gallery');
 
 
-/* const handleDelete = (evt) => {
-  evt.target.closest('.gallery__container').remove();
-}; */
+const handleDelete = (evt) => {
+  evt.target.closest('.gallery').remove();
+};
 
 const handleLike = (evt) => {
   evt.target.classList.toggle('gallery__like_active');
@@ -44,8 +44,8 @@ const loadImages = (element) => {
     galleryName.textContent = element.name;
     galleryImage.src = element.link;
     galleryImage.alt = element.name;
-    /* const deleteButton = galleryElements.querySelector('.button__delete');
-    deleteButton.addEventListener('click', handleDelete) */
+    const deleteButton = galleryElements.querySelector('.gallery__bin');
+    deleteButton.addEventListener('click', handleDelete);
     const likeButton = galleryElements.querySelector('.gallery__like');
     likeButton.addEventListener('click', handleLike);
     return galleryElements;
