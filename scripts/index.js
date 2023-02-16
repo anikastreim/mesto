@@ -25,19 +25,54 @@ const initialCards = [
   }
 ];
 
+const profileName = document.querySelector(".profile__name");
+const profileDescription = document.querySelector(".profile__description");
+const editButton = document.querySelector(".profile__edit");
+const addButton = document.querySelector(".profile__add");
 const galleryWrapper = document.querySelector('.galleries');
 const template = document.getElementById('gallery');
+const popup = document.querySelector(".popup");
+const editPopup = document.querySelector(".popup_type_edit")
+const addPopup = document.querySelector(".popup_type_add");
+const imagePopup = document.querySelector(".popup-image");
+const closeButton = popup.querySelector(".popup__close");
+const formElement = popup.querySelector(".popup__form");
+const nameInput = popup.querySelector(".popup__input_type_name");
+const descriptionInput = popup.querySelector(".popup__input_type_description");
+const titleInput = popup.querySelector(".popup__input_type_title");
+const linkInput = popup.querySelector(".popup__input_type_link");
+const popupImage = document.querySelector(".popup-image__image");
+const popupCaption = document.querySelector(".popup-image__caption")
 
+// открытие попапа
 
-const handleDelete = (evt) => {
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+};
+
+// закрытие попапа
+
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+};
+
+// попап фулл картинки
+
+// удаление
+
+const deleteImages = (evt) => {
   evt.target.closest('.gallery').remove();
 };
 
-const handleLike = (evt) => {
+// лайки
+
+const likeImages = (evt) => {
   evt.target.classList.toggle('gallery__like_active');
 };
 
-const loadImages = (element) => {
+// загрузка картинок на страницу
+
+const loadAllImages = (element) => {
     const galleryElements = template.content.cloneNode(true);
     const galleryName = galleryElements.querySelector('.gallery__caption');
     const galleryImage = galleryElements.querySelector('.gallery__image');
@@ -45,62 +80,50 @@ const loadImages = (element) => {
     galleryImage.src = element.link;
     galleryImage.alt = element.name;
     const deleteButton = galleryElements.querySelector('.gallery__bin');
-    deleteButton.addEventListener('click', handleDelete);
+    deleteButton.addEventListener('click', deleteImages);
     const likeButton = galleryElements.querySelector('.gallery__like');
-    likeButton.addEventListener('click', handleLike);
+    likeButton.addEventListener('click', likeImages);
+    galleryImage.addEventListener("click", function() {
+      popupCaption.textContent = element.name;
+      popupImage.src = element.link;
+      popupImage.alt = element.name;
+      openPopup(imagePopup);
+    })
     return galleryElements;
 }
 
 initialCards.forEach((element) => {
-    galleryWrapper.append(loadImages(element))
+  galleryWrapper.append(loadAllImages(element))
 })
 
 
+// попап редактирования
 
-
-
-
-
-
-
-
-
-
-
-let editButton = document.querySelector(".profile__edit");
-let popup = document.querySelector(".popup");
-let closeButton = popup.querySelector(".popup__close");
-let formElement = popup.querySelector(".popup__form");
-let nameInput = popup.querySelector(".popup__input_type_name");
-let descriptionInput = popup.querySelector(".popup__input_type_description");
-let profileName = document.querySelector(".profile__name");
-let profileDescription = document.querySelector(".profile__description");
-
-function toggleOpenPopup() {
-  popup.classList.toggle("popup_opened");
-};
-
-function handleEditButtonClick() {
+function editButtonClick() {
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
-  toggleOpenPopup();
+  openPopup(editPopup);
 };
 
-editButton.addEventListener("click", handleEditButtonClick);
-closeButton.addEventListener("click", toggleOpenPopup);
+// попап добавления картинки
 
-function handleFormSubmit (evt) {
+function addButtonClick() {
+  openPopup(addPopup);
+};
+
+// сохранение данных в попапе редактирования
+
+function formSubmit (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
-  toggleOpenPopup();
+  closePopup(editPopup);
 }
 
-formElement.addEventListener('submit', handleFormSubmit);
 
+// вызов функций
 
-
-
-likeButton.querySelector('.gallery__like').addEventListener('click', function (evt) {
-  evt.target.classList.toggle('gallery__like_active')
-}); 
+editButton.addEventListener("click", editButtonClick);
+addButton.addEventListener("click", addButtonClick);
+closeButton.addEventListener("click", closePopup);
+formElement.addEventListener('submit', formSubmit);
