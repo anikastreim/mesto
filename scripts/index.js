@@ -1,29 +1,29 @@
 const initialCards = [
   {
-    name: 'Карачаевск',
-    link: './images/karachaevsk.jpg'
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-    name: 'Гора Эльбрус',
-    link: './images/elbrus.jpg'
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-    name: 'Домбай',
-    link: './images/dombay.jpg'
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-    name: 'Ленские столбы',
-    link: './images/pillars.jpg'
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-    name: 'Остров Врангеля',
-    link: './images/wrangel-island.jpg'
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-    name: 'Кунгурская пещера',
-    link: '../images/kungur-cave.jpg'
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-];
+]; 
 
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -35,12 +35,13 @@ const popup = document.querySelector(".popup");
 const editPopup = document.querySelector(".popup_type_edit")
 const addPopup = document.querySelector(".popup_type_add");
 const imagePopup = document.querySelector(".popup-image");
-const closeButton = popup.querySelector(".popup__close");
-const formElement = popup.querySelector(".popup__form");
-const nameInput = popup.querySelector(".popup__input_type_name");
-const descriptionInput = popup.querySelector(".popup__input_type_description");
-const titleInput = popup.querySelector(".popup__input_type_title");
-const linkInput = popup.querySelector(".popup__input_type_link");
+const closeButton = document.querySelector(".popup__close");
+const formEdit = document.querySelector(".popup__form_type_edit");
+const formAdd = document.querySelector(".popup__form_type_add")
+const nameInput = document.querySelector(".popup__input_type_name");
+const descriptionInput = document.querySelector(".popup__input_type_description");
+const titleInput = document.querySelector(".popup__input_type_title");
+const linkInput = document.querySelector(".popup__input_type_link");
 const popupImage = document.querySelector(".popup-image__image");
 const popupCaption = document.querySelector(".popup-image__caption")
 
@@ -52,11 +53,9 @@ function openPopup(popup) {
 
 // закрытие попапа
 
-function closePopup(popup) {
-  popup.classList.remove("popup_opened");
+const closePopup = (evt) => {
+  evt.target.closest('.popup').remove("popup_opened");
 };
-
-// попап фулл картинки
 
 // удаление
 
@@ -83,7 +82,8 @@ const loadAllImages = (element) => {
     deleteButton.addEventListener('click', deleteImages);
     const likeButton = galleryElements.querySelector('.gallery__like');
     likeButton.addEventListener('click', likeImages);
-    galleryImage.addEventListener("click", function() {
+    // попап с фулл картинкой
+    galleryImage.addEventListener("click", () => {
       popupCaption.textContent = element.name;
       popupImage.src = element.link;
       popupImage.alt = element.name;
@@ -97,7 +97,7 @@ initialCards.forEach((element) => {
 })
 
 
-// попап редактирования
+// попап редактирования (открывашка)
 
 function editButtonClick() {
   nameInput.value = profileName.textContent;
@@ -105,7 +105,7 @@ function editButtonClick() {
   openPopup(editPopup);
 };
 
-// попап добавления картинки
+// попап добавления картинки (открывашка)
 
 function addButtonClick() {
   openPopup(addPopup);
@@ -113,11 +113,21 @@ function addButtonClick() {
 
 // сохранение данных в попапе редактирования
 
-function formSubmit (evt) {
+function formSubmitEdit (evt) {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
   closePopup(editPopup);
+}
+
+// сохранение данных в попапе добавления картинки
+function formSubmitAdd (evt) {
+  evt.preventDefault();
+  const card = {name: titleInput.value, link: linkInput.value};
+  const newImage = loadAllImages(card)
+  galleryWrapper.prepend(newImage);
+  evt.target.reset();
+  closePopup(addPopup);
 }
 
 
@@ -126,4 +136,5 @@ function formSubmit (evt) {
 editButton.addEventListener("click", editButtonClick);
 addButton.addEventListener("click", addButtonClick);
 closeButton.addEventListener("click", closePopup);
-formElement.addEventListener('submit', formSubmit);
+formEdit.addEventListener('submit', formSubmitEdit);
+formAdd.addEventListener('submit', formSubmitAdd);
