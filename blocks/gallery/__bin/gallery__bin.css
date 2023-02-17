@@ -7,3 +7,8 @@
   border: none;
   background: url(../../../images/bin.svg) center no-repeat;
 }
+
+.gallery__bin:hover {
+  opacity: .6;
+  cursor: pointer;
+}
