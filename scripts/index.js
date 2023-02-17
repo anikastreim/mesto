@@ -30,12 +30,12 @@ const profileDescription = document.querySelector(".profile__description");
 const editButton = document.querySelector(".profile__edit");
 const addButton = document.querySelector(".profile__add");
 const galleryWrapper = document.querySelector('.galleries');
-const template = document.getElementById('gallery');
+const template = document.getElementById("gallery");
 const popup = document.querySelector(".popup");
 const editPopup = document.querySelector(".popup_type_edit")
 const addPopup = document.querySelector(".popup_type_add");
 const imagePopup = document.querySelector(".popup-image");
-const closeButton = document.querySelector(".popup__close");
+const closeButton = document.querySelectorAll(".popup__close");
 const formEdit = document.querySelector(".popup__form_type_edit");
 const formAdd = document.querySelector(".popup__form_type_add")
 const nameInput = document.querySelector(".popup__input_type_name");
@@ -45,96 +45,67 @@ const linkInput = document.querySelector(".popup__input_type_link");
 const popupImage = document.querySelector(".popup-image__image");
 const popupCaption = document.querySelector(".popup-image__caption")
 
-// открытие попапа
-
-function openPopup(popup) {
+const openPopup = (popup) => {
   popup.classList.add("popup_opened");
 };
 
-// закрытие попапа
-
-const closePopup = (evt) => {
-  evt.target.closest('.popup').remove("popup_opened");
+const closePopup = (popup) => {
+  popup.classList.remove("popup_opened");
 };
 
-// удаление
+closeButton.forEach((cross) => {
+  cross.addEventListener("click", () => closePopup(cross.closest(".popup")));
+});
 
-const deleteImages = (evt) => {
-  evt.target.closest('.gallery').remove();
-};
-
-// лайки
-
-const likeImages = (evt) => {
-  evt.target.classList.toggle('gallery__like_active');
-};
-
-// загрузка картинок на страницу
-
-const loadAllImages = (element) => {
+const createCard = (element) => {
     const galleryElements = template.content.cloneNode(true);
-    const galleryName = galleryElements.querySelector('.gallery__caption');
-    const galleryImage = galleryElements.querySelector('.gallery__image');
+    const galleryName = galleryElements.querySelector(".gallery__caption");
+    const galleryImage = galleryElements.querySelector(".gallery__image");
     galleryName.textContent = element.name;
     galleryImage.src = element.link;
     galleryImage.alt = element.name;
-    const deleteButton = galleryElements.querySelector('.gallery__bin');
-    deleteButton.addEventListener('click', deleteImages);
-    const likeButton = galleryElements.querySelector('.gallery__like');
-    likeButton.addEventListener('click', likeImages);
-    // попап с фулл картинкой
+    const deleteButton = galleryElements.querySelector(".gallery__bin");
+    deleteButton.addEventListener("click", (evt) => {
+      evt.target.closest(".gallery").remove();
+    });
+    const likeButton = galleryElements.querySelector(".gallery__like");
+    likeButton.addEventListener("click", (evt) => {
+      evt.target.classList.toggle("gallery__like_active");
+    });    
     galleryImage.addEventListener("click", () => {
       popupCaption.textContent = element.name;
       popupImage.src = element.link;
       popupImage.alt = element.name;
       openPopup(imagePopup);
-    })
+    });
     return galleryElements;
-}
+};
 
 initialCards.forEach((element) => {
-  galleryWrapper.append(loadAllImages(element))
-})
+  galleryWrapper.append(createCard(element));
+});
 
-
-// попап редактирования (открывашка)
-
-function editButtonClick() {
+editButton.addEventListener("click", () => {
   nameInput.value = profileName.textContent;
   descriptionInput.value = profileDescription.textContent;
   openPopup(editPopup);
-};
+});
 
-// попап добавления картинки (открывашка)
-
-function addButtonClick() {
-  openPopup(addPopup);
-};
-
-// сохранение данных в попапе редактирования
-
-function formSubmitEdit (evt) {
+formEdit.addEventListener("submit", (evt) => {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileDescription.textContent = descriptionInput.value;
   closePopup(editPopup);
-}
+});
 
-// сохранение данных в попапе добавления картинки
-function formSubmitAdd (evt) {
+addButton.addEventListener("click", () => {
+  openPopup(addPopup);
+});
+
+formAdd.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  const card = {name: titleInput.value, link: linkInput.value};
-  const newImage = loadAllImages(card)
+  const newImage = createCard({name: titleInput.value, link: linkInput.value});
   galleryWrapper.prepend(newImage);
   evt.target.reset();
   closePopup(addPopup);
-}
-
-
-// вызов функций
-
-editButton.addEventListener("click", editButtonClick);
-addButton.addEventListener("click", addButtonClick);
-closeButton.addEventListener("click", closePopup);
-formEdit.addEventListener('submit', formSubmitEdit);
-formAdd.addEventListener('submit', formSubmitAdd);
+});
