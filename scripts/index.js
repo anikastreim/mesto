@@ -1,41 +1,14 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
 
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const editButton = document.querySelector(".profile__edit");
 const addButton = document.querySelector(".profile__add");
 const galleryWrapper = document.querySelector('.galleries');
-const template = document.getElementById("gallery");
-const popup = document.querySelector(".popup");
+const template = document.querySelector(".template-gallery").content;
 const editPopup = document.querySelector(".popup_type_edit")
 const addPopup = document.querySelector(".popup_type_add");
 const imagePopup = document.querySelector(".popup-image");
-const closeButton = document.querySelectorAll(".popup__close");
+const closeButtons = document.querySelectorAll(".popup__close");
 const formEdit = document.querySelector(".popup__form_type_edit");
 const formAdd = document.querySelector(".popup__form_type_add")
 const nameInput = document.querySelector(".popup__input_type_name");
@@ -53,12 +26,12 @@ const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
 };
 
-closeButton.forEach((cross) => {
+closeButtons.forEach((cross) => {
   cross.addEventListener("click", () => closePopup(cross.closest(".popup")));
 });
 
 const createCard = (element) => {
-    const galleryElements = template.content.cloneNode(true);
+    const galleryElements = template.querySelector(".gallery").cloneNode(true);
     const galleryName = galleryElements.querySelector(".gallery__caption");
     const galleryImage = galleryElements.querySelector(".gallery__image");
     galleryName.textContent = element.name;
@@ -104,8 +77,8 @@ addButton.addEventListener("click", () => {
 
 formAdd.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  const newImage = createCard({name: titleInput.value, link: linkInput.value});
-  galleryWrapper.prepend(newImage);
+  const newCard = createCard({name: titleInput.value, link: linkInput.value});
+  galleryWrapper.prepend(newCard);
   evt.target.reset();
   closePopup(addPopup);
 });
