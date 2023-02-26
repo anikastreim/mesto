@@ -1,4 +1,3 @@
-
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const editButton = document.querySelector(".profile__edit");
@@ -23,7 +22,7 @@ const keyHandler = (evt) => {
     const openedPopup = document.querySelector(".popup_opened");
     closePopup(openedPopup);
   }
-} 
+}
 
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
