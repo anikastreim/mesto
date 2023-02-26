@@ -18,12 +18,21 @@ const linkInput = document.querySelector(".popup__input_type_link");
 const popupImage = document.querySelector(".popup-image__image");
 const popupCaption = document.querySelector(".popup-image__caption")
 
+const keyHandler = (evt) => {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    closePopup(openedPopup);
+  }
+} 
+
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", keyHandler);
 };
 
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", keyHandler);
 };
 
 closeButtons.forEach((cross) => {
