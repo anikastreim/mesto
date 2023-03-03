@@ -24,6 +24,12 @@ const keyHandler = (evt) => {
   }
 }
 
+document.addEventListener("click", (evt) => {
+  if (evt.target.classList.contains("popup_opened")) {
+    closePopup(evt.target);
+  }
+})
+
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", keyHandler);
