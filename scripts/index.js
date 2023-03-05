@@ -15,7 +15,8 @@ const descriptionInput = document.querySelector(".popup__input_type_description"
 const titleInput = document.querySelector(".popup__input_type_title");
 const linkInput = document.querySelector(".popup__input_type_link");
 const popupImage = document.querySelector(".popup-image__image");
-const popupCaption = document.querySelector(".popup-image__caption")
+const popupCaption = document.querySelector(".popup-image__caption");
+const saveButtonAdd = document.querySelector(".popup__save_type_add");
 
 const keyHandler = (evt) => {
   if (evt.key === "Escape") {
@@ -52,8 +53,8 @@ const createCard = (element) => {
     galleryImage.src = element.link;
     galleryImage.alt = element.name;
     const deleteButton = galleryElements.querySelector(".gallery__bin");
-    deleteButton.addEventListener("click", (evt) => {
-      evt.target.closest(".gallery").remove();
+    deleteButton.addEventListener("click", () => {
+      galleryElements.remove();
     });
     const likeButton = galleryElements.querySelector(".gallery__like");
     likeButton.addEventListener("click", (evt) => {
@@ -87,6 +88,8 @@ formEdit.addEventListener("submit", (evt) => {
 
 addButton.addEventListener("click", () => {
   openPopup(addPopup);
+  saveButtonAdd.classList.add("popup__save_disabled");
+  saveButtonAdd.setAttribute("disabled", true);
 });
 
 formAdd.addEventListener("submit", (evt) => {
