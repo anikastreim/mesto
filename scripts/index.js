@@ -1,3 +1,5 @@
+import { FormValidator } from './validate.js';
+
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const editButton = document.querySelector(".profile__edit");
@@ -17,6 +19,12 @@ const linkInput = document.querySelector(".popup__input_type_link");
 const popupImage = document.querySelector(".popup-image__image");
 const popupCaption = document.querySelector(".popup-image__caption");
 const saveButtonAdd = document.querySelector(".popup__save_type_add");
+
+const validatorEditForm = new FormValidator(config, formEdit);
+validatorEditForm.enableValidation();
+
+const validatorAddForm = new FormValidator(config, formAdd);
+validatorAddForm.enableValidation();
 
 const keyHandler = (evt) => {
   if (evt.key === "Escape") {
