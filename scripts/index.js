@@ -1,11 +1,13 @@
-import { FormValidator } from './validate.js';
+import { Card } from './Card.js';
+import { FormValidator, config } from './FormValidator.js';
+import { initialCards } from './constants.js';
 
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const editButton = document.querySelector(".profile__edit");
 const addButton = document.querySelector(".profile__add");
 const galleryWrapper = document.querySelector('.galleries');
-const template = document.querySelector(".template-gallery").content;
+const templateGallery = document.querySelector(".template-gallery").content.querySelector(".gallery");;
 const editPopup = document.querySelector(".popup_type_edit")
 const addPopup = document.querySelector(".popup_type_add");
 const imagePopup = document.querySelector(".popup-image");
@@ -19,12 +21,6 @@ const linkInput = document.querySelector(".popup__input_type_link");
 const popupImage = document.querySelector(".popup-image__image");
 const popupCaption = document.querySelector(".popup-image__caption");
 const saveButtonAdd = document.querySelector(".popup__save_type_add");
-
-const validatorEditForm = new FormValidator(config, formEdit);
-validatorEditForm.enableValidation();
-
-const validatorAddForm = new FormValidator(config, formAdd);
-validatorAddForm.enableValidation();
 
 const keyHandler = (evt) => {
   if (evt.key === "Escape") {
@@ -53,32 +49,21 @@ closeButtons.forEach((cross) => {
   cross.addEventListener("click", () => closePopup(cross.closest(".popup")));
 });
 
-const createCard = (element) => {
-    const galleryElements = template.querySelector(".gallery").cloneNode(true);
-    const galleryName = galleryElements.querySelector(".gallery__caption");
-    const galleryImage = galleryElements.querySelector(".gallery__image");
-    galleryName.textContent = element.name;
-    galleryImage.src = element.link;
-    galleryImage.alt = element.name;
-    const deleteButton = galleryElements.querySelector(".gallery__bin");
-    deleteButton.addEventListener("click", () => {
-      galleryElements.remove();
-    });
-    const likeButton = galleryElements.querySelector(".gallery__like");
-    likeButton.addEventListener("click", (evt) => {
-      evt.target.classList.toggle("gallery__like_active");
-    });    
-    galleryImage.addEventListener("click", () => {
-      popupCaption.textContent = element.name;
-      popupImage.src = element.link;
-      popupImage.alt = element.name;
-      openPopup(imagePopup);
-    });
-    return galleryElements;
-};
+export const openImagePopup = (evt) => {
+  popupCaption.textContent = evt.name;
+  popupImage.src = evt.link;
+  popupImage.alt = evt.name;
+  openPopup(imagePopup);
+}
 
-initialCards.forEach((element) => {
-  galleryWrapper.append(createCard(element));
+const createCard = (item)  => {
+  const card = new Card(item, templateGallery, openImagePopup);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
+initialCards.forEach((item) => {
+  galleryWrapper.append(createCard(item));
 });
 
 editButton.addEventListener("click", () => {
@@ -102,8 +87,13 @@ addButton.addEventListener("click", () => {
 
 formAdd.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  const newCard = createCard({name: titleInput.value, link: linkInput.value});
-  galleryWrapper.prepend(newCard);
+  galleryWrapper.prepend(createCard({name: titleInput.value, link: linkInput.value}));
   evt.target.reset();
   closePopup(addPopup);
 });
+
+const validatorEditForm = new FormValidator(config, formEdit);
+validatorEditForm.enableValidation();
+
+const validatorAddForm = new FormValidator(config, formAdd);
+validatorAddForm.enableValidation();
