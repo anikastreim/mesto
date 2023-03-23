@@ -1,6 +1,6 @@
-import { Card } from './Card.js';
-import { FormValidator, config } from './FormValidator.js';
-import { initialCards } from './constants.js';
+import { Card } from "./Card.js";
+import { FormValidator, config } from "./FormValidator.js";
+import { initialCards } from "./constants.js";
 
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -10,7 +10,7 @@ const galleryWrapper = document.querySelector('.galleries');
 const templateGallery = document.querySelector(".template-gallery").content.querySelector(".gallery");;
 const editPopup = document.querySelector(".popup_type_edit")
 const addPopup = document.querySelector(".popup_type_add");
-const imagePopup = document.querySelector(".popup-image");
+export const imagePopup = document.querySelector(".popup-image");
 const closeButtons = document.querySelectorAll(".popup__close");
 const formEdit = document.querySelector(".popup__form_type_edit");
 const formAdd = document.querySelector(".popup__form_type_add")
@@ -18,8 +18,8 @@ const nameInput = document.querySelector(".popup__input_type_name");
 const descriptionInput = document.querySelector(".popup__input_type_description");
 const titleInput = document.querySelector(".popup__input_type_title");
 const linkInput = document.querySelector(".popup__input_type_link");
-const popupImage = document.querySelector(".popup-image__image");
-const popupCaption = document.querySelector(".popup-image__caption");
+export const popupImage = document.querySelector(".popup-image__image");
+export const popupCaption = document.querySelector(".popup-image__caption");
 const saveButtonAdd = document.querySelector(".popup__save_type_add");
 
 const keyHandler = (evt) => {
@@ -35,7 +35,7 @@ document.addEventListener("click", (evt) => {
   }
 })
 
-const openPopup = (popup) => {
+export const openPopup = (popup) => {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown", keyHandler);
 };
@@ -49,21 +49,14 @@ closeButtons.forEach((cross) => {
   cross.addEventListener("click", () => closePopup(cross.closest(".popup")));
 });
 
-export const openImagePopup = (evt) => {
-  popupCaption.textContent = evt.name;
-  popupImage.src = evt.link;
-  popupImage.alt = evt.name;
-  openPopup(imagePopup);
-}
-
-const createCard = (item)  => {
-  const card = new Card(item, templateGallery, openImagePopup);
+const createCard = (data)  => {
+  const card = new Card(data, templateGallery);
   const cardElement = card.generateCard();
   return cardElement;
 }
 
-initialCards.forEach((item) => {
-  galleryWrapper.append(createCard(item));
+initialCards.forEach((data) => {
+  galleryWrapper.append(createCard(data));
 });
 
 editButton.addEventListener("click", () => {

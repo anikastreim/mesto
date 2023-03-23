@@ -1,11 +1,10 @@
-import { openImagePopup } from './index.js';
+import { openPopup, imagePopup, popupImage, popupCaption } from "./index.js";
 
 export class Card {
-  constructor(data, templateGallery, openImagePopup) {
+  constructor(data, templateGallery) {
     this.name = data.name;
     this.link = data.link;
     this._templateGallery = templateGallery;
-    this._openImagePopup = openImagePopup; 
   };
 
   _getTemplate() {
@@ -26,19 +25,22 @@ export class Card {
     return this._element;
   };
 
-  _deleteCard() {
+  _deleteCard = () => {
     this._element.remove();
   };
 
-  _toggleLike() {
+  _toggleLike = () => {
     this._likeButton.classList.toggle("gallery__like_active");
   };
 
-  _openPopup() {
-    openImagePopup(this._element);
-  };
+  _openImagePopup = () => {
+    popupCaption.textContent = this.name;
+    popupImage.src = this.link;
+    popupImage.alt = this.name;
+    openPopup(imagePopup);
+  }
   
-  _setEventListeners() {
+  _setEventListeners = () => {
     this._deleteButton.addEventListener("click", () => {
       this._deleteCard();
     });    
@@ -46,7 +48,7 @@ export class Card {
       this._toggleLike();
     });
     this._galleryImage.addEventListener("click", () => {
-      this._openPopup(); 
+      this._openImagePopup(); 
     });
   }
 }
