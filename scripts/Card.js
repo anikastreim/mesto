@@ -1,4 +1,5 @@
-import { openPopup, imagePopup, popupImage, popupCaption } from "./index.js";
+import { imagePopup, popupImage, popupCaption } from "./constants.js";
+import { openPopup } from "./index.js";
 
 export class Card {
   constructor(data, templateGallery) {
@@ -27,6 +28,7 @@ export class Card {
 
   _deleteCard = () => {
     this._element.remove();
+    this._element = null;
   };
 
   _toggleLike = () => {

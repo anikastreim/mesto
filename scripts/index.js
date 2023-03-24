@@ -1,6 +1,6 @@
 import { Card } from "./Card.js";
-import { FormValidator, config } from "./FormValidator.js";
-import { initialCards } from "./constants.js";
+import { FormValidator } from "./FormValidator.js";
+import { initialCards, config } from "./constants.js";
 
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
@@ -10,7 +10,6 @@ const galleryWrapper = document.querySelector('.galleries');
 const templateGallery = document.querySelector(".template-gallery").content.querySelector(".gallery");;
 const editPopup = document.querySelector(".popup_type_edit")
 const addPopup = document.querySelector(".popup_type_add");
-export const imagePopup = document.querySelector(".popup-image");
 const closeButtons = document.querySelectorAll(".popup__close");
 const formEdit = document.querySelector(".popup__form_type_edit");
 const formAdd = document.querySelector(".popup__form_type_add")
@@ -18,9 +17,6 @@ const nameInput = document.querySelector(".popup__input_type_name");
 const descriptionInput = document.querySelector(".popup__input_type_description");
 const titleInput = document.querySelector(".popup__input_type_title");
 const linkInput = document.querySelector(".popup__input_type_link");
-export const popupImage = document.querySelector(".popup-image__image");
-export const popupCaption = document.querySelector(".popup-image__caption");
-const saveButtonAdd = document.querySelector(".popup__save_type_add");
 
 const keyHandler = (evt) => {
   if (evt.key === "Escape") {
@@ -74,8 +70,7 @@ formEdit.addEventListener("submit", (evt) => {
 
 addButton.addEventListener("click", () => {
   openPopup(addPopup);
-  saveButtonAdd.classList.add("popup__save_disabled");
-  saveButtonAdd.setAttribute("disabled", true);
+  validatorAddForm.toggleButtonState();
 });
 
 formAdd.addEventListener("submit", (evt) => {
