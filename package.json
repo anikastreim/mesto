@@ -7,9 +7,17 @@
     "build": "webpack --mode production",
     "dev": "webpack serve"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anikastreim/mesto.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anikastreim/mesto/issues"
+  },
+  "homepage": "https://github.com/anikastreim/mesto#readme",
   "devDependencies": {
     "@babel/core": "^7.21.4",
     "@babel/preset-env": "^7.21.4",
