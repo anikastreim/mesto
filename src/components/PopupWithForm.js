@@ -6,6 +6,8 @@ constructor(popupSelector, callbackSubmitForm) {
     this._callbackSubmitForm = callbackSubmitForm;
     this._form = this._popup.querySelector(".popup__form");
     this._inputs = this._form.querySelectorAll(".popup__input");
+    this._submitButton = this._form.querySelector(".popup__save");
+    this._submitButtonText = this._submitButton.textContent;
   }
 
   _getInputValues() {
@@ -27,5 +29,14 @@ constructor(popupSelector, callbackSubmitForm) {
   close() {
     super.close();
     this._form.reset();
+  }
+
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._submitButton.textContent = "Сохранение...";
+    }
+    else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
   }
 }

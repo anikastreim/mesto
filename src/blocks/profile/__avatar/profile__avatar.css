@@ -4,4 +4,10 @@
   height: 120px;
   border-radius: 120px;
   object-fit: cover;
+  transition: opacity .2s;
+}
+
+.profile__avatar:hover {
+  cursor: pointer;
+  opacity: .2;
 }
