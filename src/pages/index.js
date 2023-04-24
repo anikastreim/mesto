@@ -85,7 +85,7 @@ const popupUpdateAvatar = new PopupWithForm(avatarPopup,
     api
       .updateAvatar(avatar)
       .then((avatar) => {
-        userInfo.setUserAvatar(avatar);
+        userInfo.setUserInfo(avatar);
         popupUpdateAvatar.close();
       })
       .catch((err) => {
@@ -131,7 +131,6 @@ Promise.all([
 ])
     .then(([ profileData, cards ]) => {
       userInfo.setUserInfo(profileData);
-      userInfo.setUserAvatar(profileData); 
       userId = profileData._id;
       galleryList.renderItems(cards.reverse());
     })
