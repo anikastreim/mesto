@@ -1,11 +1,11 @@
 export default class Card {
-  constructor(data, templateGallery, handleCardClick, handleDeleteCard, userId) {
+  constructor(data, templateGallery, handleCardClick, handlePopupDeleteCard, userId) {
     this._likes = [];
     this._name = data.name;
     this._link = data.link;
     this._templateGallery = templateGallery;
     this._handleCardClick = handleCardClick;
-    this._handleDeleteCard = handleDeleteCard;
+    this._handlePopupDeleteCard = handlePopupDeleteCard;
     this._ownerId = data.owner._id;
     this._id = data._id;
     this._userId = userId;
@@ -45,7 +45,7 @@ export default class Card {
   
   _setEventListeners() {
     this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteCard(this._element, this._id);
+      this._handlePopupDeleteCard(this._element, this._cardId);
     });    
     this._likeButton.addEventListener("click", () => {
       this._toggleLike();

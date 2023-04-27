@@ -25,7 +25,7 @@ const popupImage = new PopupWithImage(imagePopup);
 popupImage.setEventListeners();
 
 const createCard = (data)  => {
-  const card = new Card(data, templateGallery, handleCardClick, handleDeleteCard, userId);
+  const card = new Card(data, templateGallery, handleCardClick, (cardId, card) => popupDeleteCard.open(cardId, card), userId);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -138,23 +138,17 @@ Promise.all([
       console.log(err);
     });
 
-const popupDeleteCard = new PopupDelete(deletePopup);
+const popupDeleteCard = new PopupDelete(deletePopup, 
+  () => {
+    api
+      .deleteCard(cardId)
+      .then(() => {
+        popupDeleteCard.card.remove();
+        popupDeleteCard.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+);
 popupDeleteCard.setEventListeners();
-
-const handleDeleteCard = (card, id) => {
-  popupDeleteCard.setCallback(() => {
-  api
-    .deleteCard(id)
-    .then(() => {
-      card.remove();
-      popupDeleteCard.close();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      popupDeleteCard.renderLoading(false);
-    });
-  });
-  popupDeleteCard.open();
-}

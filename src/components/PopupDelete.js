@@ -1,26 +1,22 @@
 import Popup from "./Popup.js";
 
 export default class PopupDelete extends Popup {
-constructor(popupSelector, callbackSubmitForm) {
+constructor(popupSelector, deleteHandler) {
     super(popupSelector);
-    this._form = this._popup.querySelector(".popup__form");
+    this._deleteHandler = deleteHandler;
   }
 
   open(card, cardId) {
     super.open();
-    this.card = card;
     this.cardId = cardId;
-  }
-
-  setCallback(callbackSubmitForm) {
-    this._callbackSubmitForm = callbackSubmitForm;
+    this.card = card;
   }
   
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._callbackSubmitForm();
+      this._deleteHandler();
     });
   }
 
