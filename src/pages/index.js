@@ -2,7 +2,7 @@ import "./index.css";
 import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import { config, formUpdate, profileName, profileDescription, profileAvatar, editButton, addButton, avatarPopup, galleryWrapper, templateGallery, editPopup, addPopup, formEdit, formAdd, nameInput, descriptionInput, imagePopup } from "../utils/constants.js";
+import { config, deletePopup, formUpdate, profileName, profileDescription, profileAvatar, editButton, addButton, avatarPopup, galleryWrapper, templateGallery, editPopup, addPopup, formEdit, formAdd, nameInput, descriptionInput, imagePopup } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupDelete from "../components/PopupDelete.js";
@@ -25,7 +25,7 @@ const popupImage = new PopupWithImage(imagePopup);
 popupImage.setEventListeners();
 
 const createCard = (data)  => {
-  const card = new Card(data, templateGallery, handleCardClick);
+  const card = new Card(data, templateGallery, handleCardClick, handleDeleteCard, userId);
   const cardElement = card.generateCard();
   return cardElement;
 }
@@ -137,3 +137,24 @@ Promise.all([
     .catch((err) => {
       console.log(err);
     });
+
+const popupDeleteCard = new PopupDelete(deletePopup);
+popupDeleteCard.setEventListeners();
+
+const handleDeleteCard = (card, id) => {
+  popupDeleteCard.setCallback(() => {
+  api
+    .deleteCard(id)
+    .then(() => {
+      card.remove();
+      popupDeleteCard.close();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      popupDeleteCard.renderLoading(false);
+    });
+  });
+  popupDeleteCard.open();
+}

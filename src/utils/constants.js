@@ -23,5 +23,6 @@ const formUpdate = document.querySelector(".popup__form_type_update");
 const nameInput = document.querySelector(".popup__input_type_name");
 const descriptionInput = document.querySelector(".popup__input_type_description");
 const imagePopup = document.querySelector(".popup-image");
+const deletePopup = document.querySelector(".popup_type_image");
 
-export { config, profileName, profileDescription, profileAvatar, editButton, addButton, avatarPopup, galleryWrapper, templateGallery, editPopup, addPopup, formEdit, formAdd, formUpdate, nameInput, descriptionInput, imagePopup };
+export { config, deletePopup, profileName, profileDescription, profileAvatar, editButton, addButton, avatarPopup, galleryWrapper, templateGallery, editPopup, addPopup, formEdit, formAdd, formUpdate, nameInput, descriptionInput, imagePopup };
