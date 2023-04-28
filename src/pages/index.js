@@ -2,7 +2,7 @@ import "./index.css";
 import Api from "../components/Api.js";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
-import { config, deletePopup, formUpdate, profileName, profileDescription, profileAvatar, editButton, addButton, avatarPopup, galleryWrapper, templateGallery, editPopup, addPopup, formEdit, formAdd, nameInput, descriptionInput, imagePopup } from "../utils/constants.js";
+import { config, deletePopup, profileName, profileDescription, profileAvatar, editButton, addButton, avatarPopup, galleryWrapper, templateGallery, editPopup, addPopup, formEdit, formAdd, formUpdate, nameInput, descriptionInput, imagePopup } from "../utils/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupDelete from "../components/PopupDelete.js";
@@ -159,7 +159,8 @@ Promise.all([
     .then(([ profileData, cards ]) => {
       userInfo.setUserInfo(profileData);
       userId = profileData._id;
-      galleryList.renderItems(cards.reverse());
+      galleryList.renderItems(cards);
+      cards.addItems();
     })
     .catch((err) => {
       console.log(err);
